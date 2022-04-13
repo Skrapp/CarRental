@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle</title>
+    <link th:href="@{~/css/basic.css}" rel="stylesheet">
+    <link th:href="@{~/css/add-vehicle.css}" rel="stylesheet">
+</head>
+<body>
+    <h1>Add vehicle</h1>
+    <div class="box">
+        <form th:action="@{/save-vehicle}" th:object="${vehicle}" method="post" class="form" id="addVehicleForm">
+            <label class="formLabel">Name</label>
+            <input type="text" th:field="*{name}" class="field"/><br>
+            <label class="formLabel">Model</label>
+            <input type="text" th:field="*{model}" class="field"/><br>
+            <label class="formLabel">Rental fee</label>
+            <input type="number" th:field="*{rentalFee}" class="field"/><br>
+            <button class="SubmitBtn" type="submit">Submit</button>
+            <input type="button" class="returnBtn" onclick="th:href='@{/admin/vehicles}';" value="Go back" />
+            <button class="returnBtn" type="button" th:href="@{/admin/vehicles}">Go back</button>
+            <input type="hidden" th:field="*{vehicleId}"/>
+        </form>
+
+    </div>
+</body>
+</html>

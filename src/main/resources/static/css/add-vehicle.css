@@ -1,0 +1,8 @@
+.box{
+    background-color: darkblue;
+}
+.formLabel{
+    /*Label is not wider than needed, for the with effect to take place, inline-block is needed*/
+    display: inline-block;
+    width: 70px;
+}

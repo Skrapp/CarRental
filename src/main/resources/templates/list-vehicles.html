@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+    <link th:href="@{~/css/basic.css}" rel="stylesheet">
+</head>
+<body>
+    <h1>Vehicles</h1>
+    <div class="box" >
+        <table id="vehicleTable">
+            <thead id="vehicleTableHead">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Model</th>
+            <th>Rental fee</th>
+            <th>Edit</th>
+            </thead>
+            <tr th:each="vehicle:${vehicles}">
+                <td th:text="${vehicle.getVehicleId()}"/>
+                <td th:text="${vehicle.getName()}"/>
+                <td th:text="${vehicle.getModel()}"/>
+                <td th:text="${vehicle.getRentalFee()}"/>
+                <td>
+                    <a th:href="@{/admin/vehicle/vehicle-id(vehicleId=${vehicle.getVehicleId()})}" class="updateLink">Update</a>
+                    <a th:href="@{/delete-vehicle(vehicleId=${vehicle.getVehicleId()})}" class="deleteLink">Delete</a>
+                </td>
+            </tr>
+        </table>
+        <button class="returnBtn" type="button" th:href="@{~/}">GO BACK</button>
+    </div>
+</body>
+</html>

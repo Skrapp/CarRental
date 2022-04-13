@@ -1,0 +1,59 @@
+body{
+    background: azure;
+    padding-top: 5%;
+    padding-left: 13%;
+    padding-right: 13%;
+    /*Calibri is primary font, sans-sarif is fallback in case browser does not support*/
+    font-family: Calibri, sans-serif;
+}
+.box{
+    padding: 30px;
+    border-radius: 25px;
+    min-height: 200px;
+}
+.form{}
+.field{}
+.radioButton{}
+button{
+    margin: 10px;
+    border-radius: 5px;
+    border: 0px;
+    padding: 4px;
+    min-height: 30px;
+    min-width: 80px;
+}
+.returnBtn{
+    background-image: linear-gradient(deepskyblue, cornflowerblue);
+}
+.submitBtn{
+    background-image: linear-gradient(white, lightgrey);
+}
+table{
+    width: 100%;
+    background-color: azure;
+    border-collapse: collapse;
+}
+thead{
+    background-color: darkgray;
+}
+th{
+    text-align: center;
+}
+td{
+
+}
+table,td,th{
+    border: 1px solid darkblue;
+}
+.deleteLink,.updateLink{
+    padding: 5px;
+    text-decoration-line: none;
+    text-align: center;
+    color: black;
+}
+.deleteLink{
+    background-color: #ef2f2f;
+}
+.updateLink{
+    background-color: deepskyblue;
+}

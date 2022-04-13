@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookingform</title>
+    <link th:href="@{~/css/basic.css}" rel="stylesheet">
+    <link th:href="@{~/css/add-booking.css}" rel="stylesheet">
+</head>
+<body>
+<h1>Bookingform</h1>
+<div class="box">
+    <form th:action="@{/save-booking}" th:object="${booking}" method="post" class="form" id="VehicleBookingform">
+        <label class="formLabel">Date for booking</label>
+        <input type="date" th:field="*{date}" class="field"/><br>
+        <label class="formLabel">Choose vehicle</label><br>
+        <th:block th:each="vehicle:${vehicles}">
+            <input type="radio" th:field="*{carId}" class="radioButton" th:value="${vehicle.getCarId()}"/>
+            <label th:text="${vehicle.getName()}" id="carName"></label><br>
+        </th:block>
+        <button class="submitBtn" type="submit">Submit</button>
+        <!-- <input type="hidden" th:field="*{customerId}" value="${}"/> -->
+    </form>
+</div>
+
+</body>
+</html>
