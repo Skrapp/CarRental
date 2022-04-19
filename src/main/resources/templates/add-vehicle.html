@@ -16,12 +16,13 @@
             <input type="text" th:field="*{model}" class="field"/><br>
             <label class="formLabel">Rental fee</label>
             <input type="number" th:field="*{rentalFee}" class="field"/><br>
-            <button class="SubmitBtn" type="submit">Submit</button>
-            <input type="button" class="returnBtn" onclick="th:href='@{/admin/vehicles}';" value="Go back" />
-            <button class="returnBtn" type="button" th:href="@{/admin/vehicles}">Go back</button>
+            <button class="submitBtn" type="submit">Submit</button>
             <input type="hidden" th:field="*{vehicleId}"/>
         </form>
-
+        <a class="returnBtn" th:href="@{/admin/vehicles}">Go back</a>
+        <form th:action="@{/admin/vehicles}">
+            <button class="returnBtn" type="submit" value="Go back"><button/>
+        </form>
     </div>
 </body>
 </html>
