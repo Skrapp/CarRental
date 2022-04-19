@@ -21,6 +21,6 @@ DROP TABLE IF EXISTS booking;
 CREATE TABLE booking (
     booking_Id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     customer_Id BIGINT,
-    car_Id BIGINT,
+    vehicle_Id BIGINT,
     date DATE DEFAULT CURRENT_DATE
 );

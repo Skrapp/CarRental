@@ -19,9 +19,8 @@
             <button class="submitBtn" type="submit">Submit</button>
             <input type="hidden" th:field="*{vehicleId}"/>
         </form>
-        <a class="returnBtn" th:href="@{/admin/vehicles}">Go back</a>
-        <form th:action="@{/admin/vehicles}">
-            <button class="returnBtn" type="submit" value="Go back"><button/>
+        <form th:action="@{/admin/vehicles/}">
+            <button class="returnBtn" type="submit" value="Go back">Go back</button>
         </form>
     </div>
 </body>

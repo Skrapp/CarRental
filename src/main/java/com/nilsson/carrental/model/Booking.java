@@ -2,7 +2,6 @@ package com.nilsson.carrental.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Booking {
@@ -10,15 +9,15 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookingId;
 
-    private Long carId, customerId;
+    private Long vehicleId, customerId;
     private LocalDate date;
 
-    public Long getCarId() {
-        return carId;
+    public Long getVehicleId() {
+        return vehicleId;
     }
 
-    public void setCarId(Long carId) {
-        this.carId = carId;
+    public void setVehicleId(Long carId) {
+        this.vehicleId = carId;
     }
 
     public Long getCustomerId() {

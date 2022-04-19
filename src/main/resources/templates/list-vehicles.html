@@ -11,11 +11,11 @@
     <div class="box" >
         <table id="vehicleTable">
             <thead id="vehicleTableHead">
-            <th>ID</th>
-            <th>Name</th>
-            <th>Model</th>
-            <th>Rental fee</th>
-            <th>Edit</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Rental fee</th>
+                <th>Edit</th>
             </thead>
             <tr th:each="vehicle:${vehicles}">
                 <td th:text="${vehicle.getVehicleId()}"/>

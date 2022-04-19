@@ -14,7 +14,9 @@ body{
 .form{}
 .field{}
 .radioButton{}
+
 button{
+    cursor: pointer;
     margin: 10px;
     border-radius: 5px;
     border: 0px;
@@ -23,20 +25,7 @@ button{
     min-width: 80px;
 }
 .returnBtn{
-background-color: #f44336;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-    /*display: inline-block;
-    margin: 10px;
-    border-radius: 5px;
-    border: 0px;
-    padding: 20px;
-    min-height: 30px;
-    min-width: 80px;
-    background-image: linear-gradient(deepskyblue, cornflowerblue);*/
+    background-image: linear-gradient(deepskyblue, cornflowerblue);
 }
 .submitBtn{
     background-image: linear-gradient(white, lightgrey);
@@ -52,21 +41,12 @@ thead{
 th{
     text-align: center;
 }
+tr{
+    height: auto;
+}
 td{
-
+    height: auto;
 }
 table,td,th{
     border: 1px solid darkblue;
-}
-.deleteLink,.updateLink{
-    padding: 5px;
-    text-decoration-line: none;
-    text-align: center;
-    color: black;
-}
-.deleteLink{
-    background-color: #ef2f2f;
-}
-.updateLink{
-    background-color: deepskyblue;
 }
