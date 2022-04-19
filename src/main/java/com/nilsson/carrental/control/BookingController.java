@@ -38,7 +38,7 @@ public class BookingController {
         ModelAndView modelAndView = new ModelAndView("add-booking");
         Booking newBooking = new Booking();
         List<Vehicle> vehicles = vehicleRepo.findAll();
-        modelAndView.addObject("cars", vehicles);
+        modelAndView.addObject("vehicles", vehicles);
         modelAndView.addObject("booking", newBooking);
         return modelAndView;
     }

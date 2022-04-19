@@ -14,8 +14,8 @@
         <input type="date" th:field="*{date}" class="field"/><br>
         <label class="formLabel">Choose vehicle</label><br>
         <th:block th:each="vehicle:${vehicles}">
-            <input type="radio" th:field="*{carId}" class="radioButton" th:value="${vehicle.getCarId()}"/>
-            <label th:text="${vehicle.getName()}" id="carName"></label><br>
+            <input type="radio" th:field="*{vehicleId}" class="radioButton" th:value="${vehicle.getVehicleId()}"/>
+            <label th:text="${vehicle.getName()}" id="vehicleName"></label><br>
         </th:block>
         <button class="submitBtn" type="submit">Submit</button>
         <!-- <input type="hidden" th:field="*{customerId}" value="${}"/> -->
