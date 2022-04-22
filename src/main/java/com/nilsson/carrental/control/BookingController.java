@@ -53,6 +53,8 @@ public class BookingController {
     public ModelAndView updateBooking(@RequestParam Long bookingId){
         ModelAndView modelAndView = new ModelAndView("add-booking");
         Booking booking = bookingRepo.findById(bookingId).get();
+        List<Vehicle> vehicles = vehicleRepo.findAll();
+        modelAndView.addObject("vehicles", vehicles);
         modelAndView.addObject(booking);
         return modelAndView;
     }

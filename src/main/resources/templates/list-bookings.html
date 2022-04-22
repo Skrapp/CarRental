@@ -6,6 +6,30 @@
     <link th:href="@{~/css/basic.css}" rel="stylesheet">
 </head>
 <body>
-    <p>List booking</p>
+    <h1>List booking</h1>
+    <div class="box">
+        <table id="bookingTable">
+            <thead id="bookingTableHead">
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Vehicle</th>
+            <th>Date</th>
+            <th>Edit</th>
+            </thead>
+            <tr th:each="booking:${bookings}">
+                <td th:text="${booking.getBookingId()}"/>
+                <td th:text="${booking.getCustomerId()}"/>
+                <td th:text="${booking.getVehicleId()}"/>
+                <td th:text="${booking.getDate()}"/>
+                <td>
+                    <a th:href="@{/update/booking-id(bookingId=${booking.getBookingId()})}" class="updateLink">Update</a>
+                    <a th:href="@{/delete-booking(bookingId=${booking.getBookingId()})}" class="deleteLink">Delete</a>
+                </td>
+            </tr>
+        </table>
+        <form th:action="@{/}">
+            <button class="returnBtn" type="submit">Go home</button>
+        </form>
+    </div>
 </body>
 </html>

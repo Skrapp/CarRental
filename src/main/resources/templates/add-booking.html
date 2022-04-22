@@ -10,6 +10,11 @@
 <h1>Bookingform</h1>
 <div class="box">
     <form th:action="@{/save-booking}" th:object="${booking}" method="post" class="form" id="vehicleBookingform">
+        <label class="formLabel">Customer</label>
+        <input type="number" th:field="*{customerId}" class="field"/>
+        <label th:text="${}"/><br>
+
+
         <label class="formLabel">Date for booking</label>
         <input type="date" th:field="*{date}" class="field"/><br>
 
@@ -20,6 +25,12 @@
         </select><br>
 
         <button class="submitBtn" type="submit">Submit</button>
+
+        <input type="hidden" th:field="*{bookingId}"/>
+    </form>
+
+    <form th:action="@{/orders/customer-id/}" method="get">
+        <button class="returnBtn" type="submit" value="Go back">Go back</button>
     </form>
 </div>
 
