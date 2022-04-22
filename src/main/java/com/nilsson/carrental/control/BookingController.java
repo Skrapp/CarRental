@@ -1,8 +1,10 @@
 package com.nilsson.carrental.control;
 
 import com.nilsson.carrental.model.Booking;
+import com.nilsson.carrental.model.Customer;
 import com.nilsson.carrental.model.Vehicle;
 import com.nilsson.carrental.repository.BookingRepo;
+import com.nilsson.carrental.repository.CustomerRepo;
 import com.nilsson.carrental.repository.VehicleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class BookingController {
@@ -20,6 +23,8 @@ public class BookingController {
     private BookingRepo bookingRepo;
     @Autowired
     private VehicleRepo vehicleRepo;
+    @Autowired
+    private CustomerRepo customerRepo;
 
     @GetMapping("/")
     public ModelAndView home(){
@@ -31,6 +36,8 @@ public class BookingController {
         ModelAndView modelAndView  = new ModelAndView("list-bookings");
         List<Booking> bookings = bookingRepo.findAll();
         modelAndView.addObject("bookings", bookings);
+        modelAndView.addObject("vehicleRepo", vehicleRepo);
+        modelAndView.addObject("customerRepo", customerRepo);
         return modelAndView;
     }
     @GetMapping("/bookingform")
@@ -39,6 +46,32 @@ public class BookingController {
         Booking newBooking = new Booking();
         List<Vehicle> vehicles = vehicleRepo.findAll();
         modelAndView.addObject("vehicles", vehicles);
+        //modelAndView.addObject("customerRepo", customerRepo);
+        modelAndView.addObject("booking", newBooking);
+        return modelAndView;
+    }
+
+    @GetMapping("/bookingform/car")
+    public ModelAndView addBookingByVehicle(@RequestParam Long vehicleId){
+        ModelAndView modelAndView = new ModelAndView("add-booking");
+        Booking newBooking = new Booking();
+        List<Vehicle> vehicles = vehicleRepo.findAll();
+        //TODO add error check if CustomerId does not exist
+        modelAndView.addObject("vehicles", vehicles);
+        modelAndView.addObject("vehicleId", vehicleId);
+        modelAndView.addObject("booking", newBooking);
+        return modelAndView;
+    }
+
+    @GetMapping("/bookingform/customer-id")
+    public ModelAndView addBookingByCustomer(@RequestParam Long customerId){
+        ModelAndView modelAndView = new ModelAndView("add-booking");
+        Booking newBooking = new Booking();
+        List<Vehicle> vehicles = vehicleRepo.findAll();
+        Customer customer = customerRepo.getById(customerId);
+        //TODO add error check if CustomerId does not exist
+        modelAndView.addObject("vehicles", vehicles);
+        modelAndView.addObject("customers", customer);
         modelAndView.addObject("booking", newBooking);
         return modelAndView;
     }
@@ -55,6 +88,7 @@ public class BookingController {
         Booking booking = bookingRepo.findById(bookingId).get();
         List<Vehicle> vehicles = vehicleRepo.findAll();
         modelAndView.addObject("vehicles", vehicles);
+        //modelAndView.addObject("customerRepo", customerRepo);
         modelAndView.addObject(booking);
         return modelAndView;
     }

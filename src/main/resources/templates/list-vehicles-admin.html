@@ -15,7 +15,7 @@
                 <th>Name</th>
                 <th>Model</th>
                 <th>Rental fee</th>
-                <th>Book</th>
+                <th>Edit</th>
             </thead>
             <tr th:each="vehicle:${vehicles}">
                 <td th:text="${vehicle.getVehicleId()}"/>
@@ -23,8 +23,8 @@
                 <td th:text="${vehicle.getModel()}"/>
                 <td th:text="${vehicle.getRentalFee()}"/>
                 <td>
-                    <!--TODO vehicle should be choosen in bookingform-->
-                    <a th:href="@{/bookingform/car(vehicleId=${vehicle.getVehicleId()})}" class="bookLink">Book</a>
+                    <a th:href="@{/admin/vehicle/vehicle-id(vehicleId=${vehicle.getVehicleId()})}" class="updateLink">Update</a>
+                    <a th:href="@{/delete-vehicle(vehicleId=${vehicle.getVehicleId()})}" class="deleteLink">Delete</a>
                 </td>
             </tr>
         </table>

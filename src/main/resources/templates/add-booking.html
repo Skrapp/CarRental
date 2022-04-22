@@ -12,15 +12,15 @@
     <form th:action="@{/save-booking}" th:object="${booking}" method="post" class="form" id="vehicleBookingform">
         <label class="formLabel">Customer</label>
         <input type="number" th:field="*{customerId}" class="field"/>
-        <label th:text="${}"/><br>
-
+        <!--TODO add name next to field>
+        <label class="formLabel" th:text="${customerRepo.getById(${booking.getCustomerId()}).getName()}"/--><br>
 
         <label class="formLabel">Date for booking</label>
         <input type="date" th:field="*{date}" class="field"/><br>
 
         <label class="formLabel">Choose vehicle</label>
         <!-- Selection from a list -->
-        <select th:field="*{vehicleId}">
+        <select th:field="*{vehicleId}" th:value="${vehicleId}">
                 <option th:each="vehicle:${vehicles}" th:value="${vehicle.getVehicleId()}" th:text="${vehicle.getName()}"/>
         </select><br>
 

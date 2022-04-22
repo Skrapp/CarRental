@@ -18,12 +18,21 @@ public class VehicleController {
     private VehicleRepo vehicleRepo;
 
     @GetMapping("/admin/vehicles")
+    public ModelAndView getAllVehiclesAdmin(){
+        ModelAndView modelAndView  = new ModelAndView("list-vehicles-admin");
+        List<Vehicle> vehicles = vehicleRepo.findAll();
+        modelAndView.addObject("vehicles", vehicles);
+        return modelAndView;
+    }
+
+    @GetMapping("/cars")
     public ModelAndView getAllVehicles(){
         ModelAndView modelAndView  = new ModelAndView("list-vehicles");
         List<Vehicle> vehicles = vehicleRepo.findAll();
         modelAndView.addObject("vehicles", vehicles);
         return modelAndView;
     }
+
     @GetMapping("/admin/add-vehicle")
     public ModelAndView addVehicle(){
         ModelAndView modelAndView = new ModelAndView("add-vehicle");

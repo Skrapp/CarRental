@@ -7,7 +7,7 @@
     background: grey;
     text-align: left;
 }
-.deleteLink,.updateLink{
+.deleteLink,.updateLink, .bookLink{
     text-decoration-line: none;
     text-align: center;
     color: black;
@@ -17,4 +17,7 @@
 }
 .updateLink{
     background-color: deepskyblue;
+}
+.bookLink{
+    background-color: lightgrey;
 }
