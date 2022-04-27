@@ -32,12 +32,14 @@ public class BookingController {
     }
 
     @GetMapping("/orders/customer-id")
-    public ModelAndView getAllBookings(){
+    public ModelAndView getAllBookingsByCustomersId(){
         ModelAndView modelAndView  = new ModelAndView("list-bookings");
         List<Booking> bookings = bookingRepo.findAll();
+        List<Vehicle> vehicles = vehicleRepo.findAll();
+        List<Customer> customers = customerRepo.findAll();
         modelAndView.addObject("bookings", bookings);
-        modelAndView.addObject("vehicleRepo", vehicleRepo);
-        modelAndView.addObject("customerRepo", customerRepo);
+        modelAndView.addObject("vehicles", vehicles);
+        modelAndView.addObject("customers", customers);
         return modelAndView;
     }
     @GetMapping("/bookingform")

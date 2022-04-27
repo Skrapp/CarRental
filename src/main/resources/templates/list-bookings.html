@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
 <head>
     <meta charset="UTF-8">
     <title>Bookings</title>
@@ -17,10 +20,10 @@
             <th>Date</th>
             <th>Edit</th>
             </thead>
-            <tr th:each="booking:${bookings}">
+            <tr th:each="booking:${bookings}" th:with="customerId=${booking.getCustomerId()}, vehicleId=${booking.getVehicleId()}">
                 <td th:text="${booking.getBookingId()}"/>
-                <td th:text="${booking.getCustomerId()}"/>
-                <td th:text="${booking.getVehicleId()}"/>
+                <td th:text="${customers.get(booking.getCustomerId()).getName()}"/>
+                <td th:text="${vehicles.get(booking.getVehicleId()).getName()}"/>
                 <td th:text="${booking.getDate()}"/>
                 <td>
                     <a th:href="@{/update/booking-id(bookingId=${booking.getBookingId()})}" class="updateLink">Update</a>
@@ -28,7 +31,7 @@
                 </td>
             </tr>
         </table>
-        <form th:action="@{/}">
+        <form th:action="@{/}" method="get">
             <button class="returnBtn" type="submit">Go home</button>
         </form>
     </div>
