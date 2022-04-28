@@ -8,14 +8,12 @@ import com.nilsson.carrental.repository.CustomerRepo;
 import com.nilsson.carrental.repository.VehicleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class BookingController {
@@ -31,10 +29,18 @@ public class BookingController {
         return new ModelAndView("home");
     }
 
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        return principal.getName();
+    }
+
     @GetMapping("/orders/customer-id")
     public ModelAndView getAllBookingsByCustomersId(){
         ModelAndView modelAndView  = new ModelAndView("list-bookings");
-        List<Booking> bookings = bookingRepo.findAll();
+        //TODO add dynamic for every user
+        List<Booking> bookings = bookingRepo.findByCustomerId(customerRepo.findByUsername("theKitten").getCustomerId());
         List<Vehicle> vehicles = vehicleRepo.findAll();
         List<Customer> customers = customerRepo.findAll();
         modelAndView.addObject("bookings", bookings);
@@ -48,7 +54,6 @@ public class BookingController {
         Booking newBooking = new Booking();
         List<Vehicle> vehicles = vehicleRepo.findAll();
         modelAndView.addObject("vehicles", vehicles);
-        //modelAndView.addObject("customerRepo", customerRepo);
         modelAndView.addObject("booking", newBooking);
         return modelAndView;
     }
