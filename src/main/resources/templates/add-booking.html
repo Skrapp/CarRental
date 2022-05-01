@@ -10,19 +10,20 @@
 <h1>Bookingform</h1>
 <div class="box">
     <form th:action="@{/save-booking}" th:object="${booking}" method="post" class="form" id="vehicleBookingform">
-        <label class="formLabel">Customer</label>
-        <input type="number" th:field="*{customerId}" class="field"/>
-        <!--TODO add name next to field>
-        <label class="formLabel" th:text="${customerRepo.getById(${booking.getCustomerId()}).getName()}"/--><br>
+        <label class="formLabel">Booking for: </label>
+        <label class="formLabel" id="username" th:text="${currentCustomer.getName()}"></label>
+        <a class="formLabel" id="logout" th:href="@{/logout}">   logout</a><br>
 
         <label class="formLabel">Date for booking</label>
         <input type="date" th:field="*{date}" class="field"/><br>
 
         <label class="formLabel">Choose vehicle</label>
         <!-- Selection from a list -->
-        <select th:field="*{vehicleId}" th:value="${vehicleId}">
+        <select th:field="*{vehicleId}">
                 <option th:each="vehicle:${vehicles}" th:value="${vehicle.getVehicleId()}" th:text="${vehicle.getName()}"/>
         </select><br>
+
+        <input type="hidden" value=1 th:field="*{customerId}"/>
 
         <button class="submitBtn" type="submit">Submit</button>
 

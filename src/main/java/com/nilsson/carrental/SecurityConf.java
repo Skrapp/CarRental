@@ -16,9 +16,20 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //TODO for each user?
         //TODO Safety?
-        //TODO User has customerId
         auth.inMemoryAuthentication()
-                .withUser("TheKitten")
+                .withUser("thekitten")
+                .password("pass")
+                .roles("USER")
+                .and()
+                .withUser("klm")
+                .password("pass")
+                .roles("USER")
+                .and()
+                .withUser("brittv")
+                .password("pass")
+                .roles("USER")
+                .and()
+                .withUser("ylva-a")
                 .password("pass")
                 .roles("USER")
                 .and()

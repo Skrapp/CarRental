@@ -7,6 +7,8 @@ import com.nilsson.carrental.repository.BookingRepo;
 import com.nilsson.carrental.repository.CustomerRepo;
 import com.nilsson.carrental.repository.VehicleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,11 +38,20 @@ public class BookingController {
         return principal.getName();
     }
 
+    public String getCurrentUsername() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        } else {
+            return principal.toString();
+        }
+    }
     @GetMapping("/orders/customer-id")
     public ModelAndView getAllBookingsByCustomersId(){
         ModelAndView modelAndView  = new ModelAndView("list-bookings");
         //TODO add dynamic for every user
-        List<Booking> bookings = bookingRepo.findByCustomerId(customerRepo.findByUsername("theKitten").getCustomerId());
+        List<Booking> bookings = bookingRepo.findBookingByCustomerId(customerRepo.findCustomerByUsername(getCurrentUsername()).getCustomerId());
         List<Vehicle> vehicles = vehicleRepo.findAll();
         List<Customer> customers = customerRepo.findAll();
         modelAndView.addObject("bookings", bookings);
@@ -53,8 +64,10 @@ public class BookingController {
         ModelAndView modelAndView = new ModelAndView("add-booking");
         Booking newBooking = new Booking();
         List<Vehicle> vehicles = vehicleRepo.findAll();
+        Customer currentCustomer = customerRepo.findCustomerByUsername(getCurrentUsername());
         modelAndView.addObject("vehicles", vehicles);
         modelAndView.addObject("booking", newBooking);
+        modelAndView.addObject("currentCustomer", currentCustomer);
         return modelAndView;
     }
 
