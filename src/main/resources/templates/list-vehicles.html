@@ -39,7 +39,7 @@
                 <td th:text="${vehicle.getRentalFee()}"/>
                 <td>
                     <!--TODO vehicle should be choosen in bookingform-->
-                    <a th:href="@{/bookingform/car(vehicleId=${vehicle.getVehicleId()})}" class="bookLink">Book</a>
+                    <a th:href="@{/bookingform}" class="bookLink">Book</a>
                 </td>
             </tr>
         </table>

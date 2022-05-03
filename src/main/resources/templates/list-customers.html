@@ -43,7 +43,9 @@
                     </td>
                 </tr>
             </table>
-            <button class="returnBtn" th:href="@{/}">GO BACK</button>
+            <form th:action="@{/admin}" method="get">
+                <button class="returnBtn" type="submit" value="Go back">Go home</button>
+            </form>
         </div>
     </body>
 </html>

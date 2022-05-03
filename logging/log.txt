@@ -1,1 +1,9 @@
-2022-05-04 00:17:40,060 | com.nilsson.carrental.control.CustomerController | Customer updated: Viktoria, 22022-05-04 00:19:05,384 | com.nilsson.carrental.control.CustomerController | Customer updated: Viktoria, 22022-05-04 01:26:03,460 | com.nilsson.carrental.control.BookingController | User klm added booking with booking id 6
+2022-05-04 01:48:08,360 INFO | com.nilsson.carrental.control.BookingController | User klm added booking with booking id 0 
+2022-05-04 01:48:13,919 INFO | com.nilsson.carrental.control.BookingController | User klm added booking with booking id 6 
+2022-05-04 01:48:17,776 INFO | com.nilsson.carrental.control.BookingController | Booking with id 6 has been deleted 
+2022-05-04 01:50:09,383 INFO | com.nilsson.carrental.control.CustomerController | Customer updated: Sara, 0 
+2022-05-04 01:52:27,822 INFO | com.nilsson.carrental.control.VehicleController | Vehicle saved: The blue nice one, 1 
+2022-05-04 01:52:30,141 INFO | com.nilsson.carrental.control.VehicleController | Vehicle deleted: 1 
+2022-05-04 01:52:42,242 INFO | com.nilsson.carrental.control.VehicleController | Vehicle saved: Grisen, 4 
+2022-05-04 01:53:28,475 INFO | com.nilsson.carrental.control.BookingController | Booking with id 0 has been deleted 
+2022-05-04 01:53:35,155 INFO | com.nilsson.carrental.control.BookingController | User klm added booking with booking id 6 

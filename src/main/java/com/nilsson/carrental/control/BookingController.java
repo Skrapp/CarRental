@@ -93,9 +93,9 @@ public class BookingController {
         }catch (Exception e){
             logger.fatal("Could not save booking by user " + getCurrentUsername(), e);
             //TODO add warn message for user
+        }finally {
+            return "redirect:/orders/customer-id";
         }
-
-        return "redirect:/orders/customer-id";
     }
 
     @GetMapping("/update/booking-id")
@@ -116,6 +116,6 @@ public class BookingController {
         //TODO if date has passed booking should not be deletable
         bookingRepo.deleteById(bookingId);
         logger.info("Booking with id " + bookingId + " has been deleted");
-        return "redirect:/list-bookings";
+        return "redirect:/orders/customer-id";
     }
 }

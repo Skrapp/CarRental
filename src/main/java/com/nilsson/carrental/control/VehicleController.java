@@ -53,8 +53,9 @@ public class VehicleController {
             logger.info("Vehicle saved: " + vehicle.getName() + ", " + vehicle.getVehicleId());
         }catch (Exception e){
             logger.fatal("Vehicle could not be added");
+        }finally {
+            return "redirect:/admin/vehicles";
         }
-        return "redirect:/admin/vehicles";
     }
 
     @GetMapping("/admin/vehicle/vehicle-id")

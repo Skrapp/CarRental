@@ -44,9 +44,9 @@ public class CustomerController {
         }catch (Exception e){
             logger.fatal("Could not update customer", e);
             //TODO add warn message for user
+        }finally{
+            return "redirect:/admin/customers";
         }
-
-        return "redirect:/admin/customers";
     }
 
     @GetMapping("/delete-customer")
