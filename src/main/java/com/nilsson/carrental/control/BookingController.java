@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class BookingController {
@@ -47,6 +48,7 @@ public class BookingController {
             return principal.toString();
         }
     }
+
     @GetMapping("/orders/customer-id")
     public ModelAndView getAllBookingsByCustomersId(){
         ModelAndView modelAndView  = new ModelAndView("list-bookings");

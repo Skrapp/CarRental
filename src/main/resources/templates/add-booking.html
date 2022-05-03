@@ -23,11 +23,11 @@
                 <option th:each="vehicle:${vehicles}" th:value="${vehicle.getVehicleId()}" th:text="${vehicle.getName()}"/>
         </select><br>
 
-        <input type="hidden" value=1 th:field="*{customerId}"/>
 
         <button class="submitBtn" type="submit">Submit</button>
 
         <input type="hidden" th:field="*{bookingId}"/>
+        <input type="hidden" name="customerId" th:value="${currentCustomer.getCustomerId()}"/>
     </form>
 
     <form th:action="@{/orders/customer-id/}" method="get">

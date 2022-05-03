@@ -9,7 +9,8 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookingId;
 
-    private Long vehicleId, customerId;
+    private Long vehicleId,
+            customerId;
     private LocalDate date;
 
     public Long getVehicleId() {
