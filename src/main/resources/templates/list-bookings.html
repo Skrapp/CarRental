@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Bookings</title>
     <link th:href="@{~/css/basic.css}" rel="stylesheet">
     <link th:href="@{~/css/list-booking.css}" rel="stylesheet">
+    <link th:href="@{~/css/menu.css}" rel="stylesheet">
+
 </head>
+<header class="container">
+    <nav>
+        <div class="mainMenu">
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/bookingform}"> Book</a></li>
+                <li><a th:href="@{/orders/customer-id}"> My bookings</a></li>
+                <li><a th:href="@{/cars}"> Vehicles</a></li>
+                <li><a th:href="@{/logout}"> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 <body>
     <h1>List booking</h1>
     <div class="box">
         <table id="bookingTable">
             <thead id="bookingTableHead">
-            <th>ID</th>
-            <th>Customer</th>
-            <th>Vehicle</th>
-            <th>Date</th>
-            <th>Edit</th>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Vehicle</th>
+                <th>Date</th>
+                <th>Edit</th>
             </thead>
             <tr th:each="booking:${bookings}" th:with="customerId=${booking.getCustomerId()}, vehicleId=${booking.getVehicleId()}">
                 <td th:text="${booking.getBookingId()}"/>

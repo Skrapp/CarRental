@@ -1,8 +1,8 @@
 INSERT INTO customer
-VALUES (0,'Sara', 'thekitten', 'Rogsta 907'),
+VALUES (0,'Sara', 'thekitten', 'Skesta 42'),
        (1,'Jimmy', 'klm', 'Stöde 3'),
        (2,'Viktoria', 'brittv', 'Stationsvägen 30'),
-       (3,'Ylva', 'ylva-a', 'Stationsvägen 30');
+       (3,'Ylva', 'ylva-a', 'Röde 3');
 
 INSERT INTO vehicle
 VALUES (0,'Red racer', 'Saab', 159.90),

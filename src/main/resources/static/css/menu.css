@@ -1,0 +1,49 @@
+header{
+    overflow: hidden;
+}
+
+header .container{
+    margin:0px auto;
+    width: 1200px;
+}
+
+.mainMenu{
+    text-align: center;
+    height: 60px;
+    width: 100%;
+    float: left;
+    margin: 0;
+}
+
+.mainMenu ul{
+    text-align: center;
+    float: left;
+    margin: 0;
+    background: #0074D9;
+}
+
+.mainMenu li{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.mainMenu li a, .mainMenu li span{
+    display: inline-block;
+    padding: 0em 1.5em;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 60px;
+}
+
+.mainMenu li a{
+    color: white;
+}
+
+.mainMenu li:hover a, .mainMenu li span{
+    background: white;
+    color: #0074D9;
+    border-left: 1px solid #0074D9;
+    text-decoration: none;
+}

@@ -2,10 +2,45 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Update customer</title>
+    <title>Vehicle</title>
     <link th:href="@{~/css/basic.css}" rel="stylesheet">
+    <link th:href="@{~/css/update-customer.css}" rel="stylesheet">
+    <link th:href="@{~/css/menu.css}" rel="stylesheet">
+
 </head>
+<header class="container">
+    <nav>
+        <div class="mainMenu">
+            <ul>
+                <li><a th:href="@{/admin}">Home</a></li>
+                <li><a th:href="@{/admin/customers}">Customers</a></li>
+                <li><a th:href="@{/admin/vehicles}">Vehicles</a></li>
+                <li><a th:href="@{/admin/add-vehicle}">Add vehicle</a></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 <body>
-    <p>Update customer</p>
+<h1>Update customer</h1>
+<div class="box">
+    <form th:action="@{/save-customer}" th:object="${customer}" method="post" class="form" id="updateCustomerForm">
+        <label class="formLabel">Name</label>
+        <input type="text" th:field="*{name}" class="field"/><br>
+
+        <label class="formLabel">Username</label>
+        <input type="text" th:field="*{username}" class="field"/><br>
+
+        <label class="formLabel">Rental fee</label>
+        <input type="text" th:field="*{adress}" class="field" /><br>
+
+        <button class="submitBtn" type="submit">Submit</button>
+        <input type="hidden" th:field="*{customerId}"/>
+    </form>
+
+    <form th:action="@{/admin/customers/}">
+        <button class="returnBtn" type="submit" value="Go back">Go back</button>
+    </form>
+</div>
 </body>
 </html>

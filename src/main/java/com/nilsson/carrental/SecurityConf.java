@@ -57,6 +57,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 .antMatchers("/save-booking").hasRole("USER")
                 .antMatchers("/update/booking-id").hasRole("USER")
                 .antMatchers("/delete-booking").hasRole("USER")
+                .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/admin/customers").hasRole("ADMIN")
                 .antMatchers("/admin/customers/customer-id").hasRole("ADMIN")
                 .antMatchers("/delete-customer").hasRole("ADMIN")

@@ -6,6 +6,7 @@ import com.nilsson.carrental.model.Vehicle;
 import com.nilsson.carrental.repository.BookingRepo;
 import com.nilsson.carrental.repository.CustomerRepo;
 import com.nilsson.carrental.repository.VehicleRepo;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
-import java.util.Locale;
 
 @Controller
 public class BookingController {
@@ -27,18 +27,19 @@ public class BookingController {
     @Autowired
     private CustomerRepo customerRepo;
 
+    private static final Logger logger = Logger.getLogger(BookingController.class);
+
     @GetMapping("/")
-    public ModelAndView home(){
+    public ModelAndView getHome(){
         return new ModelAndView("home");
     }
 
-    @RequestMapping(value = "/username", method = RequestMethod.GET)
-    @ResponseBody
-    public String currentUserName(HttpServletRequest request) {
-        Principal principal = request.getUserPrincipal();
-        return principal.getName();
+    @GetMapping("/admin")
+    public ModelAndView getHomeAdmin() {
+        return new ModelAndView("home-admin");
     }
 
+    //TODO Make it more "standard"
     public String getCurrentUsername() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -52,7 +53,6 @@ public class BookingController {
     @GetMapping("/orders/customer-id")
     public ModelAndView getAllBookingsByCustomersId(){
         ModelAndView modelAndView  = new ModelAndView("list-bookings");
-        //TODO add dynamic for every user
         List<Booking> bookings = bookingRepo.findBookingByCustomerId(customerRepo.findCustomerByUsername(getCurrentUsername()).getCustomerId());
         List<Vehicle> vehicles = vehicleRepo.findAll();
         List<Customer> customers = customerRepo.findAll();
@@ -73,51 +73,49 @@ public class BookingController {
         return modelAndView;
     }
 
-    @GetMapping("/bookingform/car")
+    //TODO Be able to choose vehicle from list
+   /* @GetMapping("/bookingform/car")
     public ModelAndView addBookingByVehicle(@RequestParam Long vehicleId){
         ModelAndView modelAndView = new ModelAndView("add-booking");
         Booking newBooking = new Booking();
         List<Vehicle> vehicles = vehicleRepo.findAll();
-        //TODO add error check if CustomerId does not exist
         modelAndView.addObject("vehicles", vehicles);
         modelAndView.addObject("vehicleId", vehicleId);
         modelAndView.addObject("booking", newBooking);
         return modelAndView;
-    }
-
-    @GetMapping("/bookingform/customer-id")
-    public ModelAndView addBookingByCustomer(@RequestParam Long customerId){
-        ModelAndView modelAndView = new ModelAndView("add-booking");
-        Booking newBooking = new Booking();
-        List<Vehicle> vehicles = vehicleRepo.findAll();
-        Customer customer = customerRepo.getById(customerId);
-        //TODO add error check if CustomerId does not exist
-        modelAndView.addObject("vehicles", vehicles);
-        modelAndView.addObject("customers", customer);
-        modelAndView.addObject("booking", newBooking);
-        return modelAndView;
-    }
+    }*/
 
     @PostMapping("/save-booking")
     public String saveBooking(@ModelAttribute Booking booking){
-        bookingRepo.save(booking);
+        try {
+            bookingRepo.save(booking);
+            logger.info("User " + getCurrentUsername() + " added booking with booking id " + booking.getBookingId());
+        }catch (Exception e){
+            logger.fatal("Could not save booking by user " + getCurrentUsername(), e);
+            //TODO add warn message for user
+        }
+
         return "redirect:/orders/customer-id";
     }
 
     @GetMapping("/update/booking-id")
     public ModelAndView updateBooking(@RequestParam Long bookingId){
+        //TODO if date has passed booking should not be updatable
         ModelAndView modelAndView = new ModelAndView("add-booking");
         Booking booking = bookingRepo.findById(bookingId).get();
         List<Vehicle> vehicles = vehicleRepo.findAll();
+        Customer currentCustomer = customerRepo.findCustomerByUsername(getCurrentUsername());
         modelAndView.addObject("vehicles", vehicles);
-        //modelAndView.addObject("customerRepo", customerRepo);
+        modelAndView.addObject("currentCustomer", currentCustomer);
         modelAndView.addObject(booking);
         return modelAndView;
     }
 
     @GetMapping("/delete-booking")
     public String deleteBooking(@RequestParam Long bookingId){
+        //TODO if date has passed booking should not be deletable
         bookingRepo.deleteById(bookingId);
+        logger.info("Booking with id " + bookingId + " has been deleted");
         return "redirect:/list-bookings";
     }
 }

@@ -5,7 +5,22 @@
     <title>Cars</title>
     <link th:href="@{~/css/basic.css}" rel="stylesheet">
     <link th:href="@{~/css/list-vehicles.css}" rel="stylesheet">
+    <link th:href="@{~/css/menu.css}" rel="stylesheet">
+
 </head>
+<header class="container">
+    <nav>
+        <div class="mainMenu">
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/bookingform}"> Book</a></li>
+                <li><a th:href="@{/orders/customer-id}"> My bookings</a></li>
+                <li><a th:href="@{/cars}"> Vehicles</a></li>
+                <li><a th:href="@{/logout}"> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 <body>
     <h1>Vehicles</h1>
     <div class="box" >

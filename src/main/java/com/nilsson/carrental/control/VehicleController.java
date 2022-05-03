@@ -2,6 +2,8 @@ package com.nilsson.carrental.control;
 
 import com.nilsson.carrental.model.Vehicle;
 import com.nilsson.carrental.repository.VehicleRepo;
+import org.apache.log4j.Logger;
+import org.aspectj.weaver.patterns.BindingAnnotationFieldTypePattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,8 @@ public class VehicleController {
     @Autowired
     private VehicleRepo vehicleRepo;
 
+    private static final Logger logger = Logger.getLogger(VehicleController.class);
+
     @GetMapping("/admin/vehicles")
     public ModelAndView getAllVehiclesAdmin(){
         ModelAndView modelAndView  = new ModelAndView("list-vehicles-admin");
@@ -26,7 +30,7 @@ public class VehicleController {
     }
 
     @GetMapping("/cars")
-    public ModelAndView getAllVehicles(){
+    public ModelAndView getAllVehiclesUser(){
         ModelAndView modelAndView  = new ModelAndView("list-vehicles");
         List<Vehicle> vehicles = vehicleRepo.findAll();
         modelAndView.addObject("vehicles", vehicles);
@@ -43,7 +47,13 @@ public class VehicleController {
 
     @PostMapping("/save-vehicle")
     public String saveVehicle(@ModelAttribute Vehicle vehicle){
-        vehicleRepo.save(vehicle);
+        //TODO add check so all values are correct
+        try{
+            vehicleRepo.save(vehicle);
+            logger.info("Vehicle saved: " + vehicle.getName() + ", " + vehicle.getVehicleId());
+        }catch (Exception e){
+            logger.fatal("Vehicle could not be added");
+        }
         return "redirect:/admin/vehicles";
     }
 
@@ -58,6 +68,7 @@ public class VehicleController {
     @GetMapping("/delete-vehicle")
     public String deleteCar(@RequestParam Long vehicleId){
         vehicleRepo.deleteById(vehicleId);
+        logger.info("Vehicle deleted: " + vehicleId);
         return "redirect:/admin/vehicles";
     }
 }
